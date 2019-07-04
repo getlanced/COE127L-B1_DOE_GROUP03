@@ -11,6 +11,13 @@ int main()
  cout<<"Enter a word to count:";
  gets(c);
 
+  while(fin)
+ {
+  fin>>ch;
+  if(strcmp(ch,c)==0)
+   count++;
+ }
+ 
  cout<<"Occurrence="<<count<<"n";
  fin.close(); //closing file
  
