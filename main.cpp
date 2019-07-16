@@ -4,18 +4,34 @@
 #include <string>
 
 using namespace std;
-void comp(string,string,long*);
 int main ()
 {
     ifstream myfile ("words.txt");
     string line;
+	string subStr="ae";
     long num_count = 0 ;
     if (myfile.is_open())
     {
         while(!myfile.eof())
         {
             getline(myfile,line);
-            comp(line,"ea",&num_count);
+            {
+                int j =0;
+                for(int i = 0; i<int(line.length());i++)
+                {
+                    while(line[i] == subStr[j])
+                    {
+                        if(j == int(subStr.length()) - 1)
+                        {
+                            num_count++;
+                            break;
+                        }
+                        i++;
+                        j++;
+                    }
+                    j=0;
+                }
+			}
         }
     }
     else
@@ -25,23 +41,4 @@ int main ()
     myfile.close();
 
     return 0;
-}
-
-void comp(string line,string sub,long* c)
-{
-    int j =0;
-    for(int i = 0; i<int(line.length());i++)
-    {
-        while(line[i] == sub[j])
-        {
-            if(j == int(sub.length()) - 1)
-            {
-                (*c)++;
-                break;
-            }
-            i++;
-            j++;
-        }
-        j=0;
-    }
 }
