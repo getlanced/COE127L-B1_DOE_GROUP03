@@ -1,14 +1,14 @@
-
+// writing on a text file
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <map>
+
 using namespace std;
 int main ()
 {
-    ifstream myfile ("parawords.txt");
+    ifstream myfile ("words.txt");
     string line,subStr;
-    string subStr_comp = "he";
+    string subStr_comp = "he"; //Will Change to user input
     long OccCount, LnCount;
     OccCount = LnCount = 0;
 
@@ -87,6 +87,7 @@ int main ()
         }
     }
     cout<<OccCount<<endl;
+    //Implement folder iteration
     mymap.clear();//Clear Map, check for next file
     return 0;
 }
