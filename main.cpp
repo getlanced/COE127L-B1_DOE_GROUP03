@@ -6,7 +6,7 @@
 using namespace std;
 int main()
 {
-	ifstream myfile("word2.txt");
+	ifstream myfile("words.txt");
 	string line, subStr = "";
 	string subStr_comp = "her";
 	int occCount, map_key = 0;
