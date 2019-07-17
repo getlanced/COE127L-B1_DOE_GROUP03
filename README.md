@@ -12,5 +12,6 @@ Linux/ Windows:
 2) From the terminal, change the directory to where the main.cpp and .txt file is located
   by executing "cd ./path"
   *Sample path ./Desktop/ 
-3) Compile the program with -fopenmp to enable omp.h and its #pragma directive.
+3) Compile the program with the flag -fopenmp to enable omp.h and its #pragma directive.
+  g++ -fopenmp -o prog prog.cpp
 4) Profit.
