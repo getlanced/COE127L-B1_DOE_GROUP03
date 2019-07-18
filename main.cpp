@@ -8,10 +8,12 @@ int main()
 {
 	ifstream myfile("words.txt");
 	string line, subStr = "";
-	string subStr_comp = "her";
+	string subStr_comp = "";
 	int occCount, map_key = 0;
 
 	map<int,string> mymap;
+	cout<< "Enter string to compare: ";
+	cin >> subStr_comp;
 	
 	double vtime_start = omp_get_wtime();
 	//Load to vector
