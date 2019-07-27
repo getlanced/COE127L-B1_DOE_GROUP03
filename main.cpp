@@ -84,26 +84,29 @@ int main()
 
 	//Parallelize This
 	double start_time = omp_get_wtime();
+	int j = 0;
+	int k = 0;
+	#pragma omp parallel for private(line,k,j)
 	for (int i = 0; i < int(mymap.size()); i++)
 	{
-		int j = 0;
+		j = 0;
 		line = mymap[i];
-		for (int i = 0; i<int(line.size()); i++)
+		for (k = 0; k<int(line.size()); k++)
 		{
-			while (line[i] == subStr_comp[j])
+			while (line[k] == subStr_comp[j])
 			{
 				if (j == int(subStr_comp.size()) - 1)
 				{
 					//Critical region that manipulates occCount
+					#pragma omp critical
 					occCount++;
 					break;
 				}
-				i++;
+				k++;
 				j++;
 			}
 			j = 0;
 		}
-
 	}
 	double time = omp_get_wtime() - start_time;
 	cout << "Text Processing Time Taken: " << time << endl;
