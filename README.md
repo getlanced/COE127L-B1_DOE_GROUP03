@@ -14,3 +14,12 @@ Linux/ Windows:
 3) Compile the program with the flag -fopenmp to enable omp.h and its #pragma directive.
   g++ -fopenmp -o prog prog.cpp
 4) Profit.
+
+To Graph
+Requirements:
+-Python version 3.7
+
+To run:
+- Have the graphDat.csv on the same folder as the python file.
+- Assuming you have python in your environment, simply run the the file name by
+  using the command "python graphTest.py" or on Linux "python3 graphTest.py"
