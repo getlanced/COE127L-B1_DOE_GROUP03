@@ -30,14 +30,15 @@ int main()
     closedir(dpdf);
 
     ofstream toCsv("graphDAT.csv");
-	//toCsv.open("graphDAT.csv", std::ofstream::out | std::ofstream::trunc);
-	//toCsv.close();
-	//toCsv.open("graphDAT.csv");
 	toCsv << "File Name,";
 	toCsv << "Time Taken: Map Filling,";
 	toCsv << "Line Count,";
 	toCsv << "Time Taken: Processing Time,";
 	toCsv << "String Searched\n";
+
+    string subStr_comp = "";
+    cout << "Enter string to compare: ";
+    cin >> subStr_comp;
 
     for(auto it = path.begin();it != path.end(); it++)
     {
@@ -45,11 +46,6 @@ int main()
         string line = "", subStr = "";
         int occCount = 0, map_key = 0;
         map<int, string> mymap;
-
-		string subStr_comp = "";
-		cout << "Enter string to compare in"
-		<< *it <<": ";
-		cin >> subStr_comp;
 
         double fill_time_start = omp_get_wtime();
 
