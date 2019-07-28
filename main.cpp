@@ -28,16 +28,31 @@ int main()
        }
     }
     closedir(dpdf);
-    string subStr_comp = "";
-    cout << "Enter string to compare: ";
-    cin >> subStr_comp;
+
+    ofstream toCsv("graphDAT.csv");
+	//toCsv.open("graphDAT.csv", std::ofstream::out | std::ofstream::trunc);
+	//toCsv.close();
+	//toCsv.open("graphDAT.csv");
+	toCsv << "File Name,";
+	toCsv << "Time Taken: Map Filling,";
+	toCsv << "Line Count,";
+	toCsv << "Time Taken: Processing Time,";
+	toCsv << "String Searched\n";
+
     for(auto it = path.begin();it != path.end(); it++)
     {
         ifstream myfile(*it);
         string line = "", subStr = "";
         int occCount = 0, map_key = 0;
         map<int, string> mymap;
+
+		string subStr_comp = "";
+		cout << "Enter string to compare in"
+		<< *it <<": ";
+		cin >> subStr_comp;
+
         double fill_time_start = omp_get_wtime();
+
         //Load to map
         if (myfile.is_open())
         {
@@ -60,6 +75,7 @@ int main()
                             break;
                     }
                     //Remove leading Space of line
+
                     for (int i = 0; i<int(line.size()); i++)
                     {
                         if (line[i] == ' ')
@@ -67,12 +83,12 @@ int main()
                         else
                             break;
                     }
+
                     //Map Fill Handler
                     for (int i = 0; i< int(line.size()); i++)
                     {
                         if (line[i] == ' ')
-                        {	
-			//Entries with multiple spaces per word
+                        {	//Entries with multiple spaces per word
                             //Peek for frontal spaces and ignores it
                             if (line[i + 1] == ' ')
                                 continue;
@@ -97,6 +113,7 @@ int main()
                 }
             }
         }
+
         else
         {
             cout << "Unable to open file\n";
@@ -134,7 +151,19 @@ int main()
         double proc_end_time = omp_get_wtime() - proc_start_time;
         cout << "Text Processing Time Taken: " << proc_end_time << endl;
         cout << "Occurrence of " << subStr_comp << " : " << occCount << endl;
+
+        toCsv<<*it;
+        toCsv<<",";
+        toCsv<<to_string(fill_EndTime);
+        toCsv<<",";
+        toCsv<<to_string(mymap.size());
+        toCsv<<",";
+        toCsv<<to_string(proc_end_time);
+        toCsv<<",";
+        toCsv<<subStr_comp;
+        toCsv<<"\n";
         mymap.clear();//Clear list, check for next file
     }
+    toCsv.close();
 	return 0;
 }
