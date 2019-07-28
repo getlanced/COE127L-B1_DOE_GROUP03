@@ -4,12 +4,11 @@ Requirements:
 (Usually comes with the latest MinGW or TDM-GCC compiler)
 TDM-GCC - https://sourceforge.net/projects/tdm-gcc/
 MinGW - https://sourceforge.net/projects/mingw/
-
+- c++14 compiler
 How to Run:
-
 Linux/ Windows:
-1) Put main.cpp and the provided sample .txt file into the same location.
-2) From the terminal, change the directory to where the main.cpp and .txt file is located
+1) Put all .txt files to stream under the txtFiles folder.
+2) From the terminal, change the directory to where the main.cpp is located
   by executing "cd ./path"
   *Sample path ./Desktop/ 
 3) Compile the program with the flag -fopenmp to enable omp.h and its #pragma directive.
